@@ -1,0 +1,46 @@
+<html>
+    <head>
+        <script src='vue.js'></script>
+    </head>
+    <div id='app'>
+        <item label='price' v-on:input='price=arguments[0]' v-bind:value='price'> </item>
+        <item label='shipping' v-on:input='shipping=arguments[0]' v-bind:value='shipping'> </item>
+        <item label='discount' v-on:input='discount=arguments[0]' v-bind:value='discount'> </item><hr>
+        <p>total:<span>{{total}}</span>
+        </p>
+    </div>
+    <template id='temp'>
+        <div>
+            <label>{{label}}</label>
+            <input v-on:input='send($event.target.value)' v-bind:value='value'>
+        </div>
+    </template>
+    <script>
+        Vue.component('item',{
+            template:'#temp',
+            data:function(){return {}},
+            props:['label','value'],
+            methods:{
+                send:function(v){
+                    return this.$emit('input',v)
+                }
+            }
+        })
+        var vm=new Vue({
+            el:'#app',
+            data:{
+                price:0,
+                shipping:0,
+                discount:0
+            },
+             computed:{
+                 total:function(){
+                     this.price=Number(this.price)
+                     this.shipping=Number(this.shipping)
+                     this.discount=Number(this.discount)
+                     return this.price+this.shipping-this.discount
+                 }
+             },
+        })
+    </script>
+</html>

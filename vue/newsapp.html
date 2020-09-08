@@ -1,0 +1,122 @@
+<html>
+    <style>
+        .warning{
+            border:2px solid red;
+        }
+        .icon1{
+           font-size:36;
+        }
+        .line{
+            border:1px solid black;
+            height:0px;
+        }
+        .edited{
+            height:30px;
+            text-align: right;
+            background:red;
+            margin-right: 0px;
+        }
+        .edited1
+        {
+            float:right;
+            margin-top:5px;
+        }
+        .last{
+            text-align: right;
+            margin-right:0px;
+            background:greenyellow
+        }
+        .head{
+            text-align: center;
+            font-size:36px;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+        .fade-enter{opacity:0}
+        .fade-enter-active{transition:opacity 3s}
+        .fade-leave-active{transition:opacity 3s}
+        .fade-leave-to{opacity:1}
+    </style>
+    <head>
+        <link rel='stylesheet' type='text/css' href='fontawesome/css/all.min.css'>
+        <script src='vue.js'></script>
+    </head>
+    <body>
+        <div id='app'  >
+            <transition name='fade' mode='out-in'>
+            <div class='reading' v-if='show' key='r' >
+                <i class="icon1 fas fa-save" v-on:click='show=!show'></i>
+           <temp1 v-bind:title='title' :date='date' :category='category' :theme_list='theme_list[category]'>{{article}}</temp1> 
+        
+        </div>
+        <div class='editing' v-if='!show' key='e'>
+            <i v-on:click='show=!show' class="icon1 fas fa-book-open"></i><br>
+            <label>Title:</label>
+            <input v-model='title' v-on:input='check' v-bind:class='{warning: !remain}'> <span>{{remain}}/{{limit}}</span><br>
+            <label>category:</label>
+            <ul>
+                <li v-for='element in category_list' ><span>{{element}} </span><input type='radio' v-model='category' v-bind:value='element'></li>
+            </ul><br>
+            <label>article:</label>
+            <textarea v-model='article'>{{article}}</textarea>
+        </div>
+    </transtion>
+        </div>
+    
+        <template id='temp1'>
+            <div>
+            
+            <p class='head' v-bind:style='{background:theme_list}'>{{title}}</p>
+            <div class='line'></div>
+            <slot></slot>
+            <div class='line'></div>
+            <div class='edited'>
+                <p class='edited1'><span>this article is created by me at : {{date}}</span></p>
+            </div>
+            <div class='edited' v-bind:style='{background:theme_list}'>{{category}}</div>
+            </div>
+        </template>
+        <script>
+            Vue.component('temp1',{
+			template:'#temp1',
+			props:['title','author','date','category','theme_list'],
+			data:function(){
+				return{}
+			},
+			methods:{},
+		})
+            var vm=new Vue({
+                el:'#app',
+                data:
+                {
+                    category:'sports',
+                    date:'2020',
+                    title:'Latest news',
+                    show:true,
+                    article:'U.S. Kills Top Iranian Military Leader In Airstrike Gen. Qassem Soleimani was killed Friday in Baghdad. The U.S. secretary of defense said Soleimani "was actively developing plans to attack American diplomats and service members throughout the region."',
+                    category_list:['sports','politics','world','city'],
+                     limit:50,
+                     theme_list:{
+                         sports:'green',
+                         politics:'blue',
+                         world:'lightgrey',
+                         city:'crimson'
+                     }
+                },
+                computed:{
+                    
+                    remain:function(){
+                        return this.limit-this.title.length
+                    }
+                },
+                methods:{
+                    check:function(){
+                        if(this.remain<0)
+                        {
+                            this.title=this.title.substr(0,this.limit)
+                        }
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>

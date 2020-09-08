@@ -1,0 +1,137 @@
+<html>
+<head>
+<title>amazon</title>
+<link href="1.ico" type='image/x-icon' rel='icon'>
+<style>
+*{
+  margin:0px;
+}
+ul li
+{
+  list-style: none;
+  display:inline;
+}
+.header
+{
+  text-align: center;
+}
+a{
+  display:inline-block;
+  text-decoration: none;
+  color:blue;
+}
+.footer{
+  text-align: center;
+  display:inline;
+background-color: lightgrey;
+}
+.seperation
+{
+  display:inline-block;
+  width:70px;
+}
+.login
+{
+  margin-left:38%;
+  border:1px solid lightgrey;
+  width:300px;
+  padding:10px;
+}
+input
+{
+  width:300px;
+
+}
+.fp {
+  float:right;
+  text-decoration: none;\
+  margin:0px;
+}
+.parent
+{
+  position:relative;
+  text-align:center;
+}
+.hyperlink
+{
+  position:relative;
+  padding-left: 1px;
+  padding-right: 1px;
+  z-index: 99;
+}
+.line {
+  position:absolute;
+  z-index: -9;
+  top:50%;
+  width:100%;
+  border:1px solid lightgrey;
+}
+a
+{
+  background: white;
+  z-index: 99;
+  padding-left: 1px;
+  padding-right: 1px;
+}
+.last
+{
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+.s {
+  color:grey;
+}
+.e {
+  font-size:14;
+}
+.c
+{
+  border:1px solid black;
+}
+</style>
+</head>
+<body>
+  <div class="header">
+    <img src="2.1.png" ></div>
+    <div class="login">
+      <h1>Login</h1><br>
+      <p>Email or phone number</p>
+      <form id="form">
+        <input id="email" type="text" value=""></form><br>
+        <span>Password</span>
+        <a href="#" class="fp">Forget Password</a>
+        <form>
+          <input name="password" type="password" value=""></form><br>
+          <input class="c" type="image" onclick=" return form1()" src="3.1.jpeg"/><br><br>
+          <div class="parent">
+            <div class="hyperlink"><a class="s">New to Amazon?</a></div>
+            <div class="line"></div>
+          </div><br>
+          <form><input class="last" name="submit" type="submit" value="I am a new customer" >
+            <br><br>
+          <p class="e">  By signing in you are agreeing to our <a class="e">Conditions of</a>
+             <a class="e">Use and Sale</a> and our <a class="e"> Policy Notice</a></p>
+    </div>
+  <div class="footer"><br>
+    <hr>
+    <ul>
+      <li><a href="#">Conditions of use</a></li>
+      <span class="seperation"></span>
+        <li><a href="#">Privacy Notice</a></li>
+        <span class="seperation"></span>
+          <li><a href="#">Help</a></li>
+    </ul><br>
+    <p>@copy 1996-2016, Amazon.com, lnc. or its affiliates</p>
+</div>
+<script type="text/javascript">
+function form1(){
+  var elem=document.forms["form"]["email"].value;
+  if(elem = "")
+  {
+    alert('Name cant be left empty');
+    return false;
+  }
+}
+</script>
+</body>
+</html>
